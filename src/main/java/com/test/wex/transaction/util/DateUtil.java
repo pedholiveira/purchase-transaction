@@ -4,12 +4,14 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 @Component
 public class DateUtil {
 
     public String localDateToString(LocalDate localDate) {
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
-        return localDate.format(formatter);
+        return Optional.ofNullable(localDate)
+                .map(date -> date.format(DateTimeFormatter.ISO_LOCAL_DATE))
+                .orElse(null);
     }
 }
