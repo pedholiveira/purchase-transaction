@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: purchase-transaction
+  datasource:
+    url: 'jdbc:h2:mem:db_purchase_transaction'
+    driverClassName: org.h2.Driver
+    username: test
+    password: test
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+
+server:
+  port: 8081
+
+treasury-rates-exchange:
+  api:
+    url: https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/rates_of_exchange?fields=currency,exchange_rate,effective_date&sort=-effective_date
