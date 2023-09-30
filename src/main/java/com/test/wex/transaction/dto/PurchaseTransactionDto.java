@@ -1,9 +1,10 @@
 package com.test.wex.transaction.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.test.wex.transaction.dto.deserializer.BigDecimalCurrency2JsonDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.test.wex.transaction.dto.deserializer.CurrencyDeserializer;
+import com.test.wex.transaction.dto.serializer.CurrencySerializer;
 import jakarta.validation.constraints.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -35,13 +36,16 @@ public class PurchaseTransactionDto {
 
     @NotNull(message = "Purchase amount cannot be null.")
     @Positive(message = "Purchase amount must be a positive value.")
-    @JsonDeserialize(using = BigDecimalCurrency2JsonDeserializer.class)
+    @JsonSerialize(using = CurrencySerializer.class)
+    @JsonDeserialize(using = CurrencyDeserializer.class)
     @JsonView({Views.Read.class, Views.Create.class})
     BigDecimal usdPurchaseAmount;
 
+    @JsonSerialize(using = CurrencySerializer.class)
     @JsonView(Views.ConvertedList.class)
     BigDecimal exchangeRate;
 
+    @JsonSerialize(using = CurrencySerializer.class)
     @JsonView(Views.ConvertedList.class)
     BigDecimal convertedPurchaseAmount;
 }

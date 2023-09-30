@@ -3,7 +3,7 @@ package com.test.wex.transaction.integration.api.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.test.wex.transaction.dto.deserializer.BigDecimalCurrency2JsonDeserializer;
+import com.test.wex.transaction.dto.deserializer.CurrencyDeserializer;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
@@ -21,7 +21,7 @@ public class ExchangeRateData {
 
     String currency;
     @JsonProperty("exchange_rate")
-    @JsonDeserialize(using = BigDecimalCurrency2JsonDeserializer.class)
+    @JsonDeserialize(using = CurrencyDeserializer.class)
     BigDecimal exchangeRate;
     @JsonProperty("effective_date")
     @JsonFormat(pattern = "yyyy-MM-dd")

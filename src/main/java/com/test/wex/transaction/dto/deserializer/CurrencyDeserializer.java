@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class BigDecimalCurrency2JsonDeserializer extends NumberDeserializers.BigDecimalDeserializer {
+public class CurrencyDeserializer extends NumberDeserializers.BigDecimalDeserializer {
 
     @Override
     public BigDecimal deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
